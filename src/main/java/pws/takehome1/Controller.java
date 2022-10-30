@@ -34,6 +34,7 @@ public class Controller {
     {
         input.addAttribute("name", nameInput);
         input.addAttribute("loc", locInput);
+        input.addAttribute("img", imgInput);
         return "viewpage";
     }
         
