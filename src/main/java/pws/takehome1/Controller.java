@@ -36,4 +36,24 @@ public class Controller {
         input.addAttribute("loc", locInput);
         return "viewpage";
     }
+        
+    @RequestMapping(value = "/image-resource{varImage}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<ByteArrayResource> getImage(@PathVariable("varImage")String photo) throws IOException{
+        if (!photo.equals("")|| photo != null) {
+            try{
+                Path filename = Paths.get("uploads",photo);
+                byte[] buffer = Files.readAllBytes(filename);
+                ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+                return ResponseEntity.ok()
+                        .contentLength(buffer.length)
+                        .contentType(MediaType.parseMediaType("image/png"))
+                        .body(byteArrayResource);
+            }catch (Exception e) {
+            }
+            
+        }
+        return ResponseEntity.badRequest().build();
+
+    }
 }
