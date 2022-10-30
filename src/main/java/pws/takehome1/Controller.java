@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @org.springframework.stereotype.Controller
 public class Controller {
-    @RequestMapping
+    @RequestMapping("/mypage")
     @ResponseBody
     public String inputData( @RequestParam(value = "varName") String nameInput,
             @RequestParam(value = "varLoc") String locInput,
